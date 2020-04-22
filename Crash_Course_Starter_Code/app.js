@@ -14,6 +14,14 @@ var i = 1;
 
 btn.addEventListener("click", function(){
 
-    img.src = pics[3];
+    if(i === 6){
+
+        i = 0;
+
+    }
+
+    img.src = pics[i];
+
+    i = i + 1;
 
 });
