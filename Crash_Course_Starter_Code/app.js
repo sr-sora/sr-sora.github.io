@@ -13,9 +13,7 @@ var img = document.querySelector("img");
 var i = 1;
 
 btn.addEventListener("click", function(){
-    if(i === 6){
-        i = 0;
-    }
-    img.src = pics[i];
-    i = i + 1;
+
+    img.src = pics[3];
+
 });
