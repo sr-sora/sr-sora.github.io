@@ -1,0 +1,64 @@
+/* fonts 
+font-family: 'Josefin Sans', sans-serif;
+font-family: 'Amatic SC', cursive; 
+*/
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Sans&display=swap');
+
+h1 {
+    font-family: 'Amatic SC', cursive;
+    font-weight: 200;
+    font-size: 70px;
+    color: #FEFEFA;
+    background-color: #E63946;
+    text-align: center;
+    width: 960px;
+    text-transform: uppercase;
+}
+
+body {
+    background-color: #FEFEFA;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#output {
+    width: 935px;
+    height: 25px;
+    text-decoration: none;
+    border: medium double #1D3557;
+    background-color: #A8DADC;
+    color: white;
+    padding: 90px 10px;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: 25px;
+    text-align: center;
+}
+
+.button {
+    color: white;
+    background-color: #457B9D;
+    font-family: 'Josefin Sans', sans-serif;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    padding: 25px 45px;
+    font-size: 1.5em;
+    border-radius: 2px;
+    margin-bottom: 60px;
+    text-align: center;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    align-content: center;
+}
+
+.button:hover {
+    color: white;
+    background-color: #A8DADC;
+    transition-duration: 0.4s;
+    text-decoration: underline;
+}
