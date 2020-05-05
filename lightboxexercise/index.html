@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Lightbox Exercise</title>
+    <link rel="stylesheet" href="lightbox.css">
+    <script src="lightbox.js"></script>
+  </head>
+  <body>
+    <!-- page content -->
+    <h1>-Lightbox Gallery-</h1>
+	
+	<div id="main">
+      
+        <img class="thumb" src="images/chenle-thumb.jpg" alt="Chenle in a Greenhouse" onclick="toggleLightBox('chenle.jpg','Chenle in a Greenhouse')">
+        <img class="thumb" src="images/makr-thumb.jpg" alt="Charcoal and Graphite Sketch of Mark" onclick="toggleLightBox('makr.jpg','Charcoal and Graphite Sketch of Mark')">
+        <img class="thumb" src="images/jackson-thumb.jpg" alt="Jackson from his MV 100 Ways" onclick="toggleLightBox('jackson.jpg','Jackson from his MV 100 Ways')">
+        <img class="thumb" src="images/jk-thumb.jpg" alt="Jungkook from a Draw This in Your Style Challenge" onclick="toggleLightBox('jk.jpg','Horse and Pony')">
+        <img class="thumb" src="images/img003-thumb.jpg" alt="Ayla and Roman as Children" onclick="toggleLightBox('img003.jpg','Ayla and Roman as Children')">
+        <img class="thumb" src="images/bam-thumb.jpg" alt="Bam from Tower of God for a Draw 6 Characters Challenge" onclick="toggleLightBox('bam.jpg','Bam from Tower of God for a Draw 6 Characters Challenge')">
+    
+    </div>
+      
+    <div id="lightbox" class="hidden"></div>
+      
+    <div id="positionBigImage">
+        
+        <div id="boundaryBigImage" class="hidden">
+        
+            <img id="x" src="images/x.png" alt="close" onclick="toggleLightBox('','')">
+            <img id="bigImage" src="images/arabian.jpg" alt="Bay Arabian Cantering">
+        
+        </div>
+      
+    </div>
+	
+  </body>
+</html>
