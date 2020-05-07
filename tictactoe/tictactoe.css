@@ -1,0 +1,128 @@
+/* fonts 
+font-family: 'Open Sans Condensed', sans-serif;
+font-family: 'Indie Flower', cursive; */
+
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&family=Open+Sans+Condensed:wght@300&display=swap');
+
+.box {
+    height: 154px;
+    width: 154px;
+    margin-right: 2px;
+    margin-bottom: 6px;
+    color: #FFFFFF;
+    background: #000000;
+    display: inline-block;
+    font-size: 100px;
+    vertical-align: top;
+    text-align: center;
+    line-height: 140px;
+    opacity: 1;
+    transition: opacity 2s ease 0.4s, transform 0.8s ease;
+    transform: scale(1);
+}
+
+.box:hover {
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  transform: scale(1.04);
+}
+
+#main {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    height: 480px;
+    width: 480px;
+    padding-top: 5px;
+    padding-left: 5px;
+    background-color: #FFFFFF;
+}
+
+.titletext {
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+h1.titletext {
+    font-size: 3em;
+}
+
+p.titletext {
+    font-size: 2em;
+}
+
+body {
+    background-color: #000000;
+    font-family: 'Open Sans Condensed', sans-serif;
+}
+
+#button {
+    margin: 30px auto 0;
+    padding: 20px 25px;
+    background-color: #000000;
+    color: #FFFFFF;
+    font-size: 14px;
+    text-align: center;
+    border: 1px solid #FFFFFF;
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 5px;
+    outline: none;  
+    margin-left: 200px;
+}
+
+#button:hover {
+    transition: 0.7s;
+    background-color: #FFFFFF;
+    color: #000000;
+    text-decoration: underline;
+}
+
+/*Lightbox*/
+
+.hidden {
+    display: none;
+}
+
+.unhidden {
+    display: block;
+}
+
+#lightbox {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+}
+
+#positionMessage {
+    position: absolute;
+    top: 45px;
+    left: 0px;
+    width: 100%;
+}
+
+#boundaryMessage {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    width: 600px;
+    height: 200px;
+    background-color: rgba(255, 255, 255, 0.9);
+    border: thick solid #FFFFFF;
+    z-index: 1;
+}
