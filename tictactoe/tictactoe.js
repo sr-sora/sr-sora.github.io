@@ -1,14 +1,158 @@
 let currentPlayer = "X";
 let gameStatus = ""; //"" - continue game, "Tie Game", "X Wins", "O Wins"
 let numTurns = 0;
-let btn = document.querySelector("button");
 let cb = []; //current board
+let idNames = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine"];
 
+//reset board and all variables
+function newGame() {
+    //document.location.href = "";
+    
+    //reset board
+    for (var i = 0; i < idNames.length; i++) {
+        document.getElementById(idNames[i]).innerHTML = "";
+    }//for
+    
+    numTurns = 0;
+    gameStatus = "";
+    currentPlayer = "X";
+    
+    changeVisibility("controls");
+}//newGame
+
+    //choose random boxes until empty box is found
+    /*do {
+        let rand = parseInt(Math.random()*9) + 1; //1-9
+        idName = idNames[rand - 1];
+        
+        //check if chosen box is empty
+        if (document.getElementById(idName).innerHTML == "") {
+            document.getElementById(idName).innerHTML = currentPlayer;
+            break;
+        }//if
+    } while (true); //do while */
+    
+//place O depending on the board situation
+function computerTakeTurn(){
+    let idName = "";
+    let i = 1;
+
+    do {
+        do{
+            if (document.getElementById(idNames[i-1]).innerHTML == "X") {
+                if (i == 1) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("nine").innerHTML == "") {
+                        idName="nine";
+                    } else if (document.getElementById("two").innerHTML == "") {
+                        idName="two";
+                    } else if (document.getElementById("four").innerHTML == "") {
+                        idName="four";
+                    } 
+                } else if (i == 2) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("one").innerHTML == "") {
+                        idName="one";
+                    } else if (document.getElementById("three").innerHTML == "") {
+                        idName="three";
+                    }
+                } else if (i == 3) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("seven").innerHTML == "") {
+                        idName="seven";
+                    } else if (document.getElementById("two").innerHTML == "") {
+                        idName="two";
+                    } else if (document.getElementById("six").innerHTML == "") {
+                        idName="six";
+                    } 
+                } else if (i == 4) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("one").innerHTML == "") {
+                        idName="one";
+                    } else if (document.getElementById("seven").innerHTML == "") {
+                        idName="seven";
+                    } 
+                } else if (i == 5) {
+                    if (document.getElementById("one").innerHTML == "") {
+                        idName="one";
+                    } else if (document.getElementById("three").innerHTML == "") {
+                        idName="three";
+                    } else if (document.getElementById("seven").innerHTML == "") {
+                        idName="seven";
+                    } else if (document.getElementById("nine").innerHTML == "") {
+                        idName="nine";
+                    } 
+                } else if (i == 6) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("three").innerHTML == "") {
+                        idName="three";
+                    } else if (document.getElementById("nine").innerHTML == "") {
+                        idName="nine";
+                    }
+                } else if (i == 7) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("three").innerHTML == "") {
+                        idName="three";
+                    } else if (document.getElementById("four").innerHTML == "") {
+                        idName="four";
+                    } else if (document.getElementById("eight").innerHTML == "") {
+                        idName="eight";
+                    } 
+                } else if (i == 8) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("seven").innerHTML == "") {
+                        idName="seven";
+                    } else if (document.getElementById("nine").innerHTML == "") {
+                        idName="nine";
+                    }
+                } else if (i == 9) {
+                    if (document.getElementById("five").innerHTML == "") {
+                        idName="five";
+                    } else if (document.getElementById("one").innerHTML == "") {
+                        idName="one";
+                    } else if (document.getElementById("eight").innerHTML == "") {
+                        idName="eight";
+                    } else if (document.getElementById("six").innerHTML == "") {
+                        idName="six";
+                    } 
+                }
+            }
+
+        i++;
+
+        }while(idName == "");
+
+        //check to see if box is empty
+        if (document.getElementById(idName).innerHTML == "") {
+            document.getElementById(idName).innerHTML = currentPlayer;
+            break;
+        }//if
+
+    }while(true);
+}//computerTakeTurn
+            
 //take player turn
 function playerTakeTurn(e){
     if (e.innerHTML == ""){
         e.innerHTML = currentPlayer;
         checkGameStatus();
+        
+        //if game not over, computer goes
+        if (gameStatus == ""){
+            setTimeout(function() {
+                    computerTakeTurn();
+                    checkGameStatus();
+                }, 500
+            );
+        }//if
+        
     } else {
         showLightBox("This box has already been selected.", "Please select another!");
         return;
@@ -22,18 +166,22 @@ function checkGameStatus(){
     //check for winner
     if (checkWin()){
         gameStatus = currentPlayer + " wins!";
-        showLightBox(gameStatus, "The game is over!");
-        return;
     }//if    
     
     //check for tie
     if (numTurns == 9){
         gameStatus = "Tie Game!";
-        showLightBox(gameStatus, "The game is over.");
     }//if
     
     //switch current player
     currentPlayer = (currentPlayer == "X" ? "O" : "X");
+    
+    if (gameStatus != ""){
+    setTimeout(function() {
+            showLightBox(gameStatus, "The game is over!");
+        }, 300
+    );
+    }
 }//checkGameStatus
 
 //check for a win, there are 8 win paths
@@ -88,18 +236,14 @@ function showLightBox(message, message2) {
     //show lightbox
     changeVisibility("lightbox");
     changeVisibility("boundaryMessage");
-}
+}//showLightBox
 
-function continueGame() {
+function continueGame() {    
+    changeVisibility("lightbox");
+    changeVisibility("boundaryMessage");
+    
     //if the game is over, show controls
-    if(gameStatus == "") {
-        changeVisibility("lightbox");
-        changeVisibility("boundaryMessage");
-    } else {
-        changeVisibility("button");
-    }
+    if(gameStatus != "") {
+        changeVisibility("controls");
+    }    
 }//continueGame
-
-function restart() {
-    document.location.href = "";
-}//restart
