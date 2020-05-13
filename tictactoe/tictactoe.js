@@ -169,9 +169,15 @@ function checkGameStatus(){
     }//if    
     
     //check for tie
-    if (numTurns == 9){
-        gameStatus = "Tie Game!";
-    }//if
+
+    // check for tie/win on 9th turn
+    if (numTurns == 9 && checkWin()) {
+        gameStatus = currentPlayer + " wins!";
+    }else{
+        if (numTurns == 9){
+            gameStatus = "Tie game!";
+        }//if
+    }//else
     
     //switch current player
     currentPlayer = (currentPlayer == "X" ? "O" : "X");
