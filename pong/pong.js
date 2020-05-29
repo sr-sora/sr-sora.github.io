@@ -263,6 +263,17 @@ function startGame() {
   score1 = 0;
   score2 = 0;
   
+  document.getElementById("score2").innerHTML = score2;
+  document.getElementById("score1").innerHTML = score1;
+  
+  speedMin = 2;
+
+  var slowDown1 = 2;
+  var slowDown2 = 2;
+  
+  document.getElementById("slowDown1").innerHTML = slowDown1;
+  document.getElementById("slowDown2").innerHTML = slowDown2;
+  
   positionOfPaddle1 = startPositionOfPaddle1;
   positionOfPaddle2 = startPositionOfPaddle2;
   
@@ -286,21 +297,31 @@ function stopGame() {
   
   if (score2 > score1) {
     message1 = "Player 2 wins with " + score2 + " points!";
-    message2 = "Player 1 had " + score1 + " points!";
+    message2 = "Player 1 had " + score1 + " points! Close to continue. Press Start Game to restart game.";
   } else if (score1 > score2) {
      message1 = "Player 1 wins with " + score1 + " points!";
-     message2 = "Player 2 had " + score2 + " points!";
+     message2 = "Player 2 had " + score2 + " points! Close to continue. Press Start Game to restart game.";
   }
   
-  showLightBox(message1, message2);
-  
+  showLightBox(message1, message2);  
 }//stopGame
 
 //next instruction slide
 function nextSlide(message, message2) {
   document.getElementById("message").innerHTML = "Rules and Twists: ";
-  document.getElementById("message2").innerHTML = "Compete against each other by controlling your respective paddle to hit a ball back and forth. The goal is to reach 10 points first; points are earned when one fails to return the ball to the other. \n In this version of the game, each player will have 2 chances to slow down the ball back to the original speed after the next death. To slow down the ball, Player 1 press 'shift' on the keyboard and Player 2 press 'enter' on the keyboard. Good luck!";
+  document.getElementById("message2").innerHTML = "Compete against each other by controlling your respective paddle to hit a ball back and forth. The goal is to reach 10 points first; points are earned when one fails to return the ball to the other. \n In this version of the game, each player will have 2 chances to slow down the ball back to the original speed after the next death. To slow down the ball, Player 1 press 'shift' on the keyboard and Player 2 press 'enter' on the keyboard. You can access the rules at any time with the button in the top left corner. Good luck!";
   changeVisibility("continue");
+}
+
+//menu
+function menu() {
+  let message1 = "";
+  let message2 = "";
+  
+  message1 = "Rules and Twists: ";
+  message2 = "Compete against each other by controlling your respective paddle to hit a ball back and forth. The goal is to reach 10 points first; points are earned when one fails to return the ball to the other. \nIn this version of the game, each player will have 2 chances to slow down the ball back to the original speed after the next death. To slow down the ball, Player 1 press 'shift' on the keyboard and Player 2 press 'enter' on the keyboard.";
+  
+  showLightBox(message1, message2);
 }
 
 /* lightbox code */
