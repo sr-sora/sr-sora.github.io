@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="icon" href="movingfavicon.ico" type="image/x-icon"/>
+    <title>Pong</title>
+    
+    <!-- include an external style sheet -->
+    <link rel="stylesheet" href="pong.css">
+          
+  </head>
+  
+  <body>
+    
+    <div id="controlpanel">
+    
+      <div onclick="startGame()" id="start" class="controls">Start Game</div>
+      <div onclick="stopGame()" id="stop" class="controls">End Game</div>
+      <div onclick="pauseGame()" id="pause" class="controls">Pause Game</div>
+      <div onclick="resumeGame()" id="resume" class="controls">Resume Game</div>
+      
+    </div>
+
+    <div id="header">
+      
+      <h1 id="title">Pong</h1>
+      <h2 id="left">Score 1: <span id="score1">0</span>&nbsp;&nbsp;&nbsp;Slow Ball Chances: <span id="slowDown1">2</span></h2>
+      <h2 id="right">Slow Ball Chances: <span id="slowDown2">2</span>&nbsp;&nbsp;&nbsp;Score 2: <span id="score2">0</span></h2>
+
+    </div>  
+    
+    <div id="gameBoard">
+      
+      <div id="paddle1" class="paddle">
+      </div>
+        
+      <div id="ball">        
+      </div>
+        
+      <div id="paddle2" class="paddle">       
+      </div>
+    
+    </div>
+    
+    <!-- lightbox -->
+    <div id="lightbox" class="unhidden"></div>
+            
+    <div id="positionMessage">
+        
+        <div id="boundaryMessage" class="unhidden">
+        
+        <img id="x" src="imgs/x.png" alt="close" onclick="continueGame()">
+        <h1 id="message" class="titleText">Hello! Welcome to Pong!</h1>
+        <p id="message2" class="titleText">To play, use the WASD keys on the keyboard to control the left paddle and the &#x2B06; &#x2B07; &#x2B05; &#x27A1; keys on the keyboard to control the right paddle! <br>You can press the spacebar on the keyboard to pause the game at any time. <br>Be warned that with every death, the faster the ball gets!</p>
+        <button id="continue" style="vertical-align:middle" onclick="nextSlide(message, message2)"><span>Next</span></button>        
+        </div>
+        
+    </div>
+      
+    <!-- include an external JavaScript file -->
+    <script src="pong.js"></script>  
+      
+  </body>
+  
+</html>
