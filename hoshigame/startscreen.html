@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Hoshi</title>
+    
+    <!-- include an external style sheet -->
+    <link rel="stylesheet" href="adventure.css">
+          
+  </head>
+  
+  <body class="screen">
+    <!-- credit: https://www.w3schools.com/howto/howto_js_sidenav.asp -->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#" onclick="rules(message, message2)">Rules</a>
+      <a href="#" onclick="controls(message, message2)">Controls</a>
+    </div>
+
+    <!-- Use any element to open the sidenav -->
+    <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; More</span> 
+    
+    <h1>Hoshi</h1>
+    
+    <div class="background"> </div>
+    <div class="div">Their once was long ago a child named Hoshi. Every night, they would diligently gaze at the night sky and revel under the thousands of lights hung in the sky.</div>
+    
+    <div class="backgroundb"> </div>
+    <div class="div">They also loved to fold paper hearts, as there was an old saying in the village that to replace the fallen stars from the sky, one must fold paper stars. So fold and fold Hoshi did.</div>
+    
+    <div class="backgroundc"> </div>
+    <div class="div">One fateful night, Hoshi realized that there were only a few stars out that night. The jar of stars disappeared! It seemed that the jar had been knocked open and then blown away by the wind. Grief-striken, Hoshi set out to find their paper stars and return the night sky to it's former glory.</div>
+  
+    <a id="link" href="index.html">Play Game?</a>
+    
+    <!-- lightbox -->
+    <div id="lightbox" class="hidden"></div>
+            
+    <div id="positionMessage">
+        
+        <div id="boundaryMessage" class="hidden">
+        
+        <img id="x" src="imgs/x.png" alt="close" onclick="continueGame()">
+        <h1 id="message" class="titleText"></h1>
+        <p id="message2" class="titleText"></p>
+        </div>
+        
+    </div>
+
+    <!-- include an external JavaScript file -->
+    <script src="adventure.js"></script>
+  </body>
+  
+</html>
