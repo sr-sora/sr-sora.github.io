@@ -268,7 +268,7 @@ function levelUp (nextClass) {
         document.getElementById("level").innerHTML = currentLevel + 1;
         loadLevel();
       }, 1000);
-    } else if (currentLevel < 6 && fragments == 6) {
+    } else if (currentLevel < 6 && fragments == 7) {
       location.replace("alternativeEnding.html")
     } else {
       location.replace("endscreen.html");
@@ -478,19 +478,6 @@ function rules() {
   
   showLightBox(message1, message2);
 }//controls
-
-//resume game play
-function resumeGame() {
-  if (!controlPlay) {
-    controlPlay = window.setInterval(show, 800/60)
-  }//if
-}//resumeGame
-
-//pause game play
-function pauseGame() {
-  window.clearInterval(controlPlay);
-  controlPlay = false;
-}//pauseGame
 
 /* lightbox code */
 
