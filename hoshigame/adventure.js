@@ -268,7 +268,7 @@ function levelUp (nextClass) {
         document.getElementById("level").innerHTML = currentLevel + 1;
         loadLevel();
       }, 1000);
-    } else if (currentLevel < 6 && fragments == 7) {
+    } else if (currentLevel == 6 && fragments == 7) {
       location.replace("alternativeEnding.html")
     } else {
       location.replace("endscreen.html");
