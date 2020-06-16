@@ -268,7 +268,7 @@ function levelUp (nextClass) {
         document.getElementById("level").innerHTML = currentLevel + 1;
         loadLevel();
       }, 1000);
-    } else if (currentLevel < 6 && fragments == 6) {
+    } else if (fragments = 7) {
       location.replace("alternativeEnding.html")
     } else {
       location.replace("endscreen.html");
@@ -312,7 +312,14 @@ function animateEnemy (boxes, index, direction) {
     boxes[index].classList.add("enemyleft");
   }//else
   
-  if ((boxes[index].classList.contains('horseup'))||(boxes[index].classList.contains('horsedown'))||   (boxes[index].classList.contains('horseleft'))|| (boxes[index].classList.contains('horseright')) | (boxes[index].classList.contains('horserideright'))| (boxes[index].classList.contains('horserideleft'))| (boxes[index].classList.contains('horserideup'))| (boxes[index].classList.contains('horseridedown'))) {
+  if ((boxes[index].classList.contains("horseup")) ||
+      (boxes[index].classList.contains("horsedown")) ||
+      (boxes[index].classList.contains("horseright")) ||
+      (boxes[index].classList.contains("horseleft")) ||
+      (boxes[index].classList.contains("horserideup")) ||
+      (boxes[index].classList.contains("horseridedown")) ||
+      (boxes[index].classList.contains("horserideright")) ||
+      (boxes[index].classList.contains("horserideleft"))) {
     //document.getElementById("lose").style.display = "block";
     setTimeout (function () {
       if (lives > 0) {
@@ -355,6 +362,7 @@ function animateEnemy (boxes, index, direction) {
     }//else
   }//else
   
+  clearTimeout(currentAnimation);
   currentAnimation = setTimeout(function() {
     animateEnemy(boxes, index, direction);
   }, 750);
@@ -371,7 +379,14 @@ function animateEnemy2 (boxes, index, direction) {
     boxes[index].classList.add("enemydown");
   }//else
   
-  if ((boxes[index].classList.contains('horseup'))||(boxes[index].classList.contains('horsedown'))||   (boxes[index].classList.contains('horseleft'))|| (boxes[index].classList.contains('horseright')) | (boxes[index].classList.contains('horserideright'))| (boxes[index].classList.contains('horserideleft'))| (boxes[index].classList.contains('horserideup'))| (boxes[index].classList.contains('horseridedown'))) {
+  if ((boxes[index].classList.contains("horseup")) ||
+      (boxes[index].classList.contains("horsedown")) ||
+      (boxes[index].classList.contains("horseright")) ||
+      (boxes[index].classList.contains("horseleft")) ||
+      (boxes[index].classList.contains("horserideup")) ||
+      (boxes[index].classList.contains("horseridedown")) ||
+      (boxes[index].classList.contains("horserideright")) ||
+      (boxes[index].classList.contains("horserideleft"))) {
     //document.getElementById("lose").style.display = "block";
     setTimeout (function () {
       if (lives > 0) {
@@ -414,6 +429,7 @@ function animateEnemy2 (boxes, index, direction) {
     }//else
   }//else
   
+  clearTimeout(currentAnimation);
   currentAnimation2 = setTimeout(function() {
     animateEnemy2(boxes, index, direction);
   }, 750);
@@ -464,7 +480,7 @@ function controls() {
   let message2 = "";
   
   message1 = "Controls";
-  message2 = "To play, use the &#x2B06; &#x2B07; &#x2B05; &#x27A1; keys on the keyboard to control the player! ";
+  message2 = "To play, use the &#x2B06; &#x2B07; &#x2B05; &#x27A1; keys on the keyboard to control the player!";
   
   showLightBox(message1, message2);
 }//controls
@@ -474,25 +490,9 @@ function rules() {
   let message2 = "";
   
   message1 = "Rules";
-  message2 = "First, go find and equip yourself with the jar. You will only be able to get past gates when you're equiped with the jar. Then, go collect the final star to proceed to the next level. Avoid all enemies along the way. If you get hit by an enemy, you will restart the level and lose a life. You will have 3 lives in total. Occasionally, there will be a star fragment which you can collect to gain 1 life.";
+  message2 = "First, go find and equip yourself with the jar. You will only be able to get past gates when you're equiped with the jar. Then, go collect the final star to proceed to the next level. Avoid all enemies along the way. If you get hit by an enemy, you will restart the level and lose a life. You will have 3 lives in total. Occasionally, there will be a star fragment which you can collect to gain 1 life. There will also be a smaller orange star fragment on each level that you can collect. If you collect all 7 of them, you will be able to view a special ending.";
   
   showLightBox(message1, message2);
 }//controls
 
-//resume game play
-function resumeGame() {
-  if (!controlPlay) {
-    controlPlay = window.setInterval(show, 800/60)
-  }//if
-}//resumeGame
-
-//pause game play
-function pauseGame() {
-  window.clearInterval(controlPlay);
-  controlPlay = false;
-}//pauseGame
-
 /* lightbox code */
-
-//fix fragments and enemy
-//             document.getElementById("lives").innerHTML = "Lives <br> ❤ ❤";
