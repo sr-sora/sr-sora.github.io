@@ -2,7 +2,7 @@
 const levels = [ 
   //level 0
   ["flag", "rock", "tree", "tree", "tree", "tree",
-  "fenceside", "rock", "", "", "rider", "tree",
+  "fenceside", "rock", "fragment", "", "rider", "tree",
   "", "tree", "animate", "animate", "animate", "tree",
   "", "tree", "", "", "rock", "rock",
   "", "tree", "", "", "", "",
@@ -11,51 +11,50 @@ const levels = [
   //level 1
   ["animate", "animate", "animate", "animate", "animate", "animate",
   "", "tree", "tree", "", "tree", "",
-  "", "", "tree", "horseup", "tree", "",
+  "", "fragment", "tree", "horseup", "tree", "",
   "", "", "tree", "tree", "rock", "",
   "", "tree", "", "flag", "rock", "", 
   "", "fenceup", "", "rock", "rider", ""],
   
   //level 2
-  ["rock", "", "", "", "", "horsedown",
-  "", "", "", "rock", "rock", "",
-  "", "", "", "rock", "", "",
+  ["rock", "vertical", "", "", "", "horsedown",
+  "piece", "vertical", "", "rock", "rock", "",
+  "", "vertical", "", "rock", "", "",
   "tree", "fenceside", "tree", "animate", "animate", "animate",
-  "water", "", "water", "water", "", "", 
+  "water", "", "water", "fragment", "water", "", 
   "flag", "bridge", "water", "water", "water", "rider"],
   
   //level 3
   ["flag", "fenceup", "horseright", "", "", "",
   "fenceside", "rock", "rock", "rock", "", "water",
-  "", "", "", "rock", "", "water",
-  "rock", "", "", "", "", "water",
-  "rock", "", "rock", "rock", "rock", "", 
-  "rock", "", "", "", "", "rider"],  
+  "", "vertical", "", "rock", "", "water",
+  "rock", "vertical", "", "", "", "water",
+  "rock", "vertical", "rock", "rock", "rock", "fragment", 
+  "rock", "vertical", "", "", "", "rider"],  
   
   //level 4
   ["flag", "tree", "", "", "", "",
   "", "", "", "tree", "rock", "fenceside",
-  "tree", "tree", "tree", "tree", "", "",
-  "", "", "", "tree", "", "",
-  "", "tree", "", "tree", "tree", "", 
-  "horseup", "tree", "rider", "", "", ""], 
+  "tree", "tree", "tree", "tree", "", "vertical",
+  "", "", "", "tree", "fragment", "vertical",
+  "", "tree", "", "tree", "tree", "vertical", 
+  "horseup", "tree", "rider", "", "", "vertical"], 
   
   //level 5
   ["rider", "tree", "horsedown", "tree", "tree", "flag",
   "", "tree", "", "tree", "", "",
   "", "fenceup", "", "rock", "", "rock",
-  "", "rock", "", "water", "", "",
-  "", "rock", "", "water", "water", "fenceside", 
+  "", "rock", "", "water", "fragment", "",
+  "piece", "rock", "", "water", "water", "fenceside", 
   "animate", "animate", "animate", "animate", "bridge", ""],  
   
   //level 6
   ["horsedown", "rock", "animate", "animate", "animate", "animate",
-  "", "rock", "", "tree", "", "tree",
+  "", "rock", "", "tree", "fragment", "tree",
   "", "rock", "", "tree", "", "",
-  "", "", "", "", "rock", "",
-  //"animate", "animate", "animate", "animate", "rock", "",
-  "tree", "water", "water", "", "fenceup", "", 
-  "flag", "", "fenceup", "", "water", "rider"],
+  "", "", "", "vertical", "rock", "",
+  "tree", "water", "water", "vertical", "fenceup", "", 
+  "flag", "", "fenceup", "vertical", "water", "rider"],
 ]; //end of levels
 
 const gridBoxes = document.querySelectorAll("#gameBoard div");
@@ -65,7 +64,12 @@ var widthOfBoard = 6;
 var currentLevel = 0; //starting level
 var riderOn = false; //is the rider on?
 var currentLocationOfHorse = 0;
-var currentAnimation; //allows 1 animation per level
+var currentAnimation; //horizontal animation
+var currentAnimation2; //vertical animation
+var lives = 3;
+var fragment = 0;
+var fragments = 0;
+var controlPlay;
 
 let nextClass = ""; //class of location we wish to move to
 
@@ -136,6 +140,12 @@ function tryToMove (direction) {
   
   //if the obstacle is not passable, don't move
   if (noPassObstacles.includes(nextClass)) {return;}
+
+  //collect piece
+  if (nextClass == "piece") {
+    lives++;
+    document.getElementById("lives").innerHTML = lives;
+  }
   
   //if it's a fence and there's no rider, don't move
   if (!riderOn && nextClass.includes("fence")) {return;}
@@ -204,6 +214,7 @@ function tryToMove (direction) {
   } else {
     gridBoxes[oldLocation].className = "";
   }//else
+  
   //build name of new class
   newClass = (riderOn) ? "horseride" : "horse";
   newClass += direction;
@@ -219,9 +230,22 @@ function tryToMove (direction) {
   
   //if it is an enemy
   if (nextClass.includes("enemy")) {
-    document.getElementById("lose").style.display = "block";
+    //document.getElementById("lose").style.display = "block";
+    setTimeout (function () {
+      if (lives > 0) {
+        loadLevel();
+        lives--; 
+        document.getElementById("lives").innerHTML = lives;
+      } else {
+        location.replace("lose.html");
+      }//if else
+    }, 100);
     return;
   }//if
+  
+  if (nextClass.includes("fragment")) {
+    fragment++;
+  }
   
   //if it is a flag move up to next level
   levelUp(nextClass); 
@@ -230,14 +254,25 @@ function tryToMove (direction) {
 //move up a level
 function levelUp (nextClass) {
   if (nextClass == "flag" && riderOn) {
-    document.getElementById("levelup").style.display = "block";
-    clearTimeout(currentAnimation);
-    setTimeout (function () {
-      document.getElementById("levelup").style.display = "none";
-      //add if statement for last level here
-      currentLevel++;
-      loadLevel();
-    }, 1000);
+    if (currentLevel < 6) {
+      document.getElementById("levelup").style.display = "block";
+      clearTimeout(currentAnimation);
+      clearTimeout(currentAnimation2);
+      setTimeout (function () {
+        document.getElementById("levelup").style.display = "none";
+        if (fragment > 0) {
+          fragments++;
+          console.log(fragments);
+        }//if
+        currentLevel++;
+        document.getElementById("level").innerHTML = currentLevel + 1;
+        loadLevel();
+      }, 1000);
+    } else if (fragments = 7) {
+      location.replace("alternativeEnding.html")
+    } else {
+      location.replace("endscreen.html");
+    }//if else end screen
   }//if
 }//levelUp
 
@@ -245,6 +280,8 @@ function levelUp (nextClass) {
 function loadLevel () {
   let levelMap = levels[currentLevel];
   let animateBoxes;
+  let animateBoxes2;
+  fragment = 0;
   riderOn = false;
   
   //load board
@@ -254,12 +291,13 @@ function loadLevel () {
   }//for
   
   animateBoxes = document.querySelectorAll(".animate");
+  animateBoxes2 = document.querySelectorAll(".vertical");
   
   animateEnemy(animateBoxes, 0, "right");
-  
+  animateEnemy2(animateBoxes2, 0, "down");
 }//loadLevel
 
-//animate enemy left to right (could add up and down to this)
+//animate enemy left to right
 //boxes - array of grid boxes that include animation
 //index - current location of animation
 //direction - current direction of animation
@@ -274,11 +312,32 @@ function animateEnemy (boxes, index, direction) {
     boxes[index].classList.add("enemyleft");
   }//else
   
+  if ((boxes[index].classList.contains("horseup")) ||
+      (boxes[index].classList.contains("horsedown")) ||
+      (boxes[index].classList.contains("horseright")) ||
+      (boxes[index].classList.contains("horseleft")) ||
+      (boxes[index].classList.contains("horserideup")) ||
+      (boxes[index].classList.contains("horseridedown")) ||
+      (boxes[index].classList.contains("horserideright")) ||
+      (boxes[index].classList.contains("horserideleft"))) {
+    //document.getElementById("lose").style.display = "block";
+    setTimeout (function () {
+      if (lives > 0) {
+        loadLevel();
+        lives--; 
+        document.getElementById("lives").innerHTML = lives;
+      } else {
+        location.replace("lose.html");
+      }//if else
+    }, 100);
+    return;
+  }//if
+  
   //remove images from other boxes
   for (i = 0; i < boxes.length; i++){
     if (i != index) {
-      boxes[i].classList.remove("enemyright");
       boxes[i].classList.remove("enemyleft");
+      boxes[i].classList.remove("enemyright");
     }//if
   }//for
   
@@ -303,18 +362,137 @@ function animateEnemy (boxes, index, direction) {
     }//else
   }//else
   
+  clearTimeout(currentAnimation);
   currentAnimation = setTimeout(function() {
     animateEnemy(boxes, index, direction);
   }, 750);
 }//animateEnemy
 
+function animateEnemy2 (boxes, index, direction) {
+  //exit function if no animation
+  if (boxes.length <= 0) {return;}
+  
+  //update images
+  if (direction == "up") {
+    boxes[index].classList.add("enemyup");
+  } else {
+    boxes[index].classList.add("enemydown");
+  }//else
+  
+  if ((boxes[index].classList.contains("horseup")) ||
+      (boxes[index].classList.contains("horsedown")) ||
+      (boxes[index].classList.contains("horseright")) ||
+      (boxes[index].classList.contains("horseleft")) ||
+      (boxes[index].classList.contains("horserideup")) ||
+      (boxes[index].classList.contains("horseridedown")) ||
+      (boxes[index].classList.contains("horserideright")) ||
+      (boxes[index].classList.contains("horserideleft"))) {
+    //document.getElementById("lose").style.display = "block";
+    setTimeout (function () {
+      if (lives > 0) {
+        loadLevel();
+        lives--; 
+        document.getElementById("lives").innerHTML = lives;
+      } else {
+        location.replace("lose.html");
+      }//if else
+    }, 100);
+    return;
+  }//if
+  
+  //remove images from other boxes
+  for (i = 0; i < boxes.length; i++){
+    if (i != index) {
+      boxes[i].classList.remove("enemyup");
+      boxes[i].classList.remove("enemydown");
+    }//if
+  }//for
+  
+  //moving up
+  if (direction == "up") {
+    //turn around if hit up side
+    if (index == boxes.length - 1){
+      index--;
+      direction = "down";
+    } else {
+      index++;
+    }//else
+    
+  //moving left
+  } else {
+    //turn around if hit down side
+    if (index == 0){
+      index++;
+      direction = "up";
+    } else {
+      index--;
+    }//else
+  }//else
+  
+  clearTimeout(currentAnimation);
+  currentAnimation2 = setTimeout(function() {
+    animateEnemy2(boxes, index, direction);
+  }, 750);
+}//animateEnemy2
 
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
 
+/* Set the width of the side navigation to 0 */
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
 
+/* lightbox code */
 
+//change the visibility of ID
+function changeVisibility(divID) {
+  var element = document.getElementById(divID);
 
-/*Finish the game. Add the following elements:
-a start screen with the title, a description of the game, instructions, and a "start" button. This could be done with a seperate html page, or with a lightbox.
-an end screen to the game. When you finish, the game currently throws a javascript error. Instead, load an end screen that wraps up the game and allows you to start over. This could be done with a seperate html page, or with a lightbox.
-Make this game your own. Write an engaging storyline that encourages participation. Improve the graphics so that when combined with the CSS, make a great design. Add creative features that motivate the player.
-Use your creativity and programming skills learned throughout the course to enhance the game with additional features. It may include things such as controls (like we did in Pong), power ups, scoring, lives, etc.*/
+  //if element exists, it is considered true
+  if (element) {
+      element.className = (element.className == "hidden") ? "unhidden" : "hidden";
+  } else {
+    element.className = (element.className == "unhidden") ? "hidden" : "unhidden";
+  }
+}//changeVisibility
+
+//display message in lightbox
+function showLightBox(message, message2) {
+  //set messages
+  document.getElementById("message").innerHTML = message;
+  document.getElementById("message2").innerHTML = message2;
+
+  //show lightbox
+  changeVisibility("lightbox");
+  changeVisibility("boundaryMessage");
+}//showLightBox
+
+//continues game
+function continueGame() {    
+  changeVisibility("lightbox");
+  changeVisibility("boundaryMessage");
+}//continueGame
+
+function controls() {
+  let message1 = "";
+  let message2 = "";
+  
+  message1 = "Controls";
+  message2 = "To play, use the &#x2B06; &#x2B07; &#x2B05; &#x27A1; keys on the keyboard to control the player!";
+  
+  showLightBox(message1, message2);
+}//controls
+
+function rules() {
+  let message1 = "";
+  let message2 = "";
+  
+  message1 = "Rules";
+  message2 = "First, go find and equip yourself with the jar. You will only be able to get past gates when you're equiped with the jar. Then, go collect the final star to proceed to the next level. Avoid all enemies along the way. If you get hit by an enemy, you will restart the level and lose a life. You will have 3 lives in total. Occasionally, there will be a star fragment which you can collect to gain 1 life. There will also be a smaller orange star fragment on each level that you can collect. If you collect all 7 of them, you will be able to view a special ending.";
+  
+  showLightBox(message1, message2);
+}//controls
+
+/* lightbox code */
