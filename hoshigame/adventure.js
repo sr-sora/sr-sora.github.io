@@ -429,7 +429,7 @@ function animateEnemy2 (boxes, index, direction) {
     }//else
   }//else
   
-  clearTimeout(currentAnimation);
+  clearTimeout(currentAnimation2);
   currentAnimation2 = setTimeout(function() {
     animateEnemy2(boxes, index, direction);
   }, 750);
