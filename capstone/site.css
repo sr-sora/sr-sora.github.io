@@ -1,0 +1,354 @@
+/*Write your CSS in here*/
+@import url(https://fonts.googleapis.com/css?family=Source+Code+Pro:200,300,400,500,600,700,900);
+
+h1 {
+  font-weight: 200;
+  font-size: 20vh;
+  text-align: center;
+  margin-top: 0vh;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  text-transform: uppercase;
+}
+
+h3 {
+  font-weight: 500;
+  opacity: 0.5;
+  text-align: center;
+}
+
+body {
+  background-color: #223c66;
+  color: #ffffff;
+  font-family: "Source Code Pro";
+  font-weight: 200;
+  margin: 0;
+}
+
+.text {
+  margin-top: 15vh;
+  margin-bottom: 15vh;
+  text-align: center;
+  font-family: "Garamond", Times, serif;
+  font-weight: 500;
+}
+
+img {
+  height: 500px;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #223c66;
+}
+
+/*nav bar*/
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  position: -webkit-sticky; /* Safari */
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 100;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: #223c66;
+  text-align: center;
+  padding: 20px 25px;
+  background-color: white;
+  font-size: 14px;
+  border: 1px solid #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 4px;
+  outline: none; 
+}
+
+li a:hover {
+  transition: 0.3s;
+  background-color: #223c66;
+  color: white;
+  text-decoration: underline;
+  border: 1px solid white;
+}
+/*nav bar end*/
+
+/*fade in boxes start*/
+section{
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+section:nth-child(1){
+  color: #e0ffff;
+  }
+section:nth-child(2){
+  color: #42455a;
+  background: #e0ffff;
+} 
+section:nth-child(3){
+  color: #e0ffff;
+}
+section:nth-child(4){
+  color: #42455a;
+  background: #e0ffff;
+}
+section .container{
+  margin: 100px;
+}
+section h1{
+  font-size: 3rem;
+  margin: 20px;
+}
+section h2{
+  font-size: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+section .text-container{
+  display: flex;
+  object-fit: cover;
+}
+section .text-container .text-box{
+  margin: 20px;
+  background: white;
+}
+section .text-container .text-box h3{
+  font-size: 30px;
+  text-align: center;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 900px){
+  section h1{
+    font-size: 2rem;
+    text-align: center;
+  }
+  section .text-container{
+    flex-direction: column;
+  }
+}
+
+.reveal{
+  position: relative;
+  transform: translateY(150px);
+  opacity: 0;
+  transition: 1s all ease;
+}
+
+.reveal.active{
+  transform: translateY(0);
+  opacity: 1;
+}
+/*fade in boxes end*/
+
+/*backgrounds*/
+.background {
+  height: 700px; 
+
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#background1 {
+  background-image: url("imgs/IMG_20190902_161847.jpg");
+}
+#background2 {
+  background-image: url("imgs/Cover%20YB.png");
+}
+#background3 {
+  background-image: url("imgs/xq.png");
+}
+/*backgrounds end*/
+button {
+  display: block;
+  color: white;
+  margin-top: 20px;
+  text-align: center;
+  padding: 20px 25px;
+  background-color: rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  border: 1px solid #ffffff;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 4px;
+  outline: none;  
+  
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, -50%);
+}
+
+button:hover {
+  transition: 0.3s;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-decoration: underline;
+  border: 1px solid white;
+}
+
+p {
+  font-size: 20px;
+}
+
+/*social media*/
+div.sms {
+  width: 100%;
+  height: 100%;
+  background-color: #223c66;
+  margin-bottom: 25px;
+}
+
+.sms:hover {
+    background-color: #779FBB;
+    transition-duration: 0.5s;
+}
+/*social media end*/
+
+/*gallery*/
+#gimg {
+    text-align: center;
+    
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+}
+
+div.gal {
+  width: 100%;
+  height: 100%;
+  background-color: #110933;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.gal:hover {
+    transition-duration: 0.5s;
+    box-shadow: 0 4px 15px 0 rgba(0, 0, 0, 0.7), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+}
+/*gallery end*/
+
+/*polaroids*/
+#pcap {
+  color: black;
+}
+
+#pimg {
+    padding: 20px;
+    text-align: center;
+    
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+}
+
+div.polaroid {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  margin-bottom: 25px;
+}
+
+.polaroid:hover {
+    background-color: #779FBB;
+    transition-duration: 0.5s;
+}
+
+div.container {
+  text-align: center;
+  padding: 10px 20px;
+}
+/*polariods end*/
+
+/*lightbox*/
+.hidden {
+    display: none;
+}
+
+.unhidden {
+    display: block;
+}
+
+#lightbox {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#positionBigImage {
+    position: absolute;
+    top: 25px;
+    left: 0px;
+    width: 100%;
+}
+
+#boundaryBigImage {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 517px;
+    
+    border: none;
+    outline: none;
+    text-decoration: none;
+}
+
+#x {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+#main {
+    width: 730px;
+    height: 480px;
+    background-color: #E8D5AFFF;
+    
+    border: none;
+    outline: none;
+    text-decoration: none;
+    
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    
+    padding: 20px;
+}
+
+.thumb {
+    padding: 20px;
+    
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    text-align: center;
+    
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+}
+.thumb:hover {
+    background-color: rgba(52, 49, 72, 0.7);
+    transition-duration: 0.5s;
+}
+/*lightbox end*/
