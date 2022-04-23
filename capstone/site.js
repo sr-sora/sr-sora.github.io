@@ -61,6 +61,13 @@ var pics = [
 	"imgs/Cover%20YB.png"
 ];
 
+var pics1 = [
+	"imgs/left.png",
+	"imgs/back.png",
+	"imgs/riht.png",
+	"imgs/front.png",
+];
+
 var btn = document.querySelector("button");
 var img = document.querySelector("img");
 var i = 1;
@@ -72,3 +79,27 @@ btn.addEventListener("click", function(){
     img.src = pics[i];
     i = i + 1;
 });
+
+var btn1 = document.getElementById("r");
+var img1 = document.getElementById("ims");
+var j = 0;
+
+btn1.addEventListener("click", function(){
+  
+  if(j === 4){
+    j = 0;
+  }
+  ims.src = pics1[j];
+  j = j + 1;
+  
+});
+
+//video
+var myVideo = document.getElementById("video1"); 
+
+function playPause() { 
+  if (myVideo.paused) 
+    myVideo.play(); 
+  else 
+    myVideo.pause(); 
+} 
