@@ -80,19 +80,24 @@ btn.addEventListener("click", function(){
     i = i + 1;
 });
 
-var btn1 = document.getElementById("r");
 var img1 = document.getElementById("ims");
 var j = 0;
 
-btn1.addEventListener("click", function(){
-  
-  if(j === 4){
-    j = 0;
+var slider = document.getElementById("myRange");
+
+slider.oninput = function() {
+  if (this.value <= 20) {
+    img1.src = pics1[3];
+  } else if (this.value <= 40 && this.value > 20){
+    img1.src = pics1[0];
+  } else if (this.value <= 60 && this.value > 40){
+    img1.src = pics1[1];
+  } else if (this.value <= 80 && this.value > 60){
+    img1.src = pics1[2];
+  } else if (this.value > 80){
+    img1.src = pics1[3];
   }
-  ims.src = pics1[j];
-  j = j + 1;
-  
-});
+}
 
 //video
 var myVideo = document.getElementById("video1"); 
@@ -102,4 +107,4 @@ function playPause() {
     myVideo.play(); 
   else 
     myVideo.pause(); 
-} 
+}
